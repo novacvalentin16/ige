@@ -1,6 +1,6 @@
 var config = {
 	include: [
-		{name: 'ExampleEntity', path: './gameClasses/ExampleEntity'},
+		//{name: 'MyClassName', path: './gameClasses/MyClassFileName'},
 	]
 };
 
