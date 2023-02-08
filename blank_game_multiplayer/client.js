@@ -16,7 +16,7 @@ var Client = IgeClass.extend({
 
 		// Load the textures we want to use
 		this.textures = {
-			ship: new IgeTexture('./assets/PlayerTexture.js')
+			background: new IgeTexture('.world-map.jpg')
 		};
 
 		ige.on('texturesLoaded', function () {
@@ -41,7 +41,22 @@ var Client = IgeClass.extend({
 							});
 						
 						// Load the base scene data
-						ige.addGraph('IgeBaseScene');
+						self.mainScene = new IgeScene2d()
+							.id('mainScene');
+						
+						// Add the scene to the engine
+						self.backgroundScene = new IgeScene2d()
+							.id('backgroundScene')
+							.layer(0)
+							.mount(self.mainScene);
+
+						// Add the camera to the engine
+						self.camera = new IgeViewport()
+                            .id('vp1')
+							.autoSize(true)
+							.scene(self.mainScene)
+							.drawBounds(true)
+                            .mount(ige);
 					});
 				}
 			});

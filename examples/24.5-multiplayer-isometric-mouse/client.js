@@ -46,10 +46,13 @@ var Client = IgeClass.extend({
 								self.log('Stream entity created with ID: ' + entity.id());
 
 							});
+													
+						// Show the editor
+						ige.editor.show();
 
 						self.mainScene = new IgeScene2d()
 							.id('mainScene');
-
+	
 						self.backgroundScene = new IgeScene2d()
 							.id('backgroundScene')
 							.layer(0)

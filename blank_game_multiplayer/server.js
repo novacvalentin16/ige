@@ -13,6 +13,7 @@ var Server = IgeClass.extend({
 				ige.start(function (success) {
 					// Check if the engine started successfully
 					if (success) {
+						// Create some network commands
 						ige.network.on('connect', function () {});
 						ige.network.on('disconnect', function () {});
 
@@ -24,8 +25,22 @@ var Server = IgeClass.extend({
 						// Accept incoming network connections
 						ige.network.acceptConnections(true);
 
-						// Load the base scene data
-						ige.addGraph('IgeBaseScene');
+						//Create the scene
+						self.mainScene = new IgeScene2d()
+							.id('mainScene');
+						
+						self.backgroundScene = new IgeScene2d()
+						 .id('backgroundScene')
+						 .layer(0)
+						 .mount(self.mainScene);
+
+						// Add the camera to the engine
+						self.camera = new IgeViewport()
+                            .id('vp1')
+							.autoSize(true)
+							.scene(self.mainScene)
+							.drawBounds(true)
+                            .mount(ige);
 					}
 				});
 			});
